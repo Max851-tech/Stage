@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test API</title>
+</head>
+<body>
+    <button onclick="getInfo()">GET /api/info</button>
+    <button onclick="postInfo()">POST /api/info</button>
+    <pre id="result"></pre>
+
+    <script>
+        async function getInfo() {
+            const res = await fetch('http://localhost:3000/api/info');
+            const data = await res.json();
+            document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+        }
+
+        async function postInfo() {
+            const res = await fetch('http://localhost:3000/api/info', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: "Nouveau message via HTML" })
+            });
+            const data = await res.json();
+            document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+        }
+    </script>
+</body>
+</html>
